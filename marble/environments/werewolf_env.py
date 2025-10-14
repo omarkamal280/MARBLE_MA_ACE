@@ -10,6 +10,10 @@ from typing import Any, Dict, List
 
 import names
 import yaml
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from colorama import Fore, Style, init

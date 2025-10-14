@@ -48,9 +48,12 @@ class WerewolfAgent:
         self.base_url = model_config.get(
             "base_url", "https://api.openai.com/v1"
         )  # Default to OpenAI API
-        self.api_key = model_config.get(
-            "api_key", config.get("openai_api_key")
-        )  # Default to using general OpenAI API key
+        # Try to get API key from config, then from environment variable
+        self.api_key = (
+            model_config.get("api_key") 
+            or config.get("openai_api_key") 
+            or os.getenv("OPENAI_API_KEY")
+        )
         self.model_name = model_config.get("model_name", "gpt-4o")  # Default to GPT-4
         self.strategy = strategy
         # Initialize the API client
